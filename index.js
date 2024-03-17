@@ -88,7 +88,7 @@ var PlayCount = 1;
 
  function PLAY()
  {
-     while(PlayCount<4)
+     while(PlayCount<6)
     {
         PlayRound();
         PlayCount++;

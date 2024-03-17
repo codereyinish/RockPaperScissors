@@ -2,43 +2,26 @@
 // set of combinations
 const Combinations = ["ROCK", "PAPER", "SCISSORS"];
 var randomIndex;
-// console.log(Combinations.length);
 function getComputerChoice()
 {
    randomIndex = (Math.floor(Math.random()*Combinations.length));
-//    console.log(randomIndex);
    return Combinations[randomIndex];
 }
-// console.log(getComputerChoice());
-let ComputerChoice = getComputerChoice();
-
-
 
 // LETS GET USER CHOICE
 
-// setting up the interface in command line for reading input
-// import { createInterface } from 'node:readline';
-// const Readline = require('node:readline');
-// const rl = Readline.createInterface(
-//     {
-//         input: process.stdin,
-//         output: process.stdout
-//     }
-// )
-// rl.question("Enter Either Rock Paper or Scissors: ", function(string)
-// {
-//     let userInput = string;
-//     console.log(userInput);
-// })
-
-
-  let PlayerChoice = (prompt("Enter Either Rock Paper or Scissors: ")).toUpperCase();
+// Declaring PC and CC here as global variable so it can be used in all functions and blocks
+let PC;
+let CC;
 //   compare condition
-function PlayRound(PC, CC)
+function PlayRound()
 {
+     PC = (prompt("Enter Either Rock Paper or Scissors: ")).toUpperCase(); //PlayerCHoice
+     CC = getComputerChoice();
     if(PC === CC)
     {
-        console.log(" %c It's a DRAW ", "color: Blue;");
+        console.log(` Count: "%c ${PlayCount} "`, "color: yellow; font-size: 17px")
+        console.log(`%c It's a DRAW, %c Both were ${PC}`,  "color:Green; font-size: 20px" , "color:Orange; font-size:20px");
     }
     // not equal cases
     else if(CC === "ROCK")
@@ -78,13 +61,41 @@ function PlayRound(PC, CC)
 // custom functions
 function PrintLOST()
 {
-    console.log(" %c You LOST ", "color: red;");
+    console.log(` Count: "%c ${PlayCount} "`, "color : yellow; font-size: 17px;");
+    console.log(` %c You LOST..... %c Your ${PC} lost over Computer's ${CC}` , "color: red; font-size: 20px; font-weight: 300;", "color: Orange; font-size: 20px;");
 }
 function PrintWIN()
 {
-    console.log(" %c You WON ", "color: green;");
+    console.log(` Count: "%c ${PlayCount} "`, "color : yellow; font-size: 17px;")
+    console.log(`%c You WON... %c  Your ${PC} won over Computer's   ${CC}`  , "color: green; font-size: 20px", "color: Orange; font-size: 20px;");
 }
-PlayRound(PlayerChoice, ComputerChoice);
 
+// Adding COUNTER
+var PlayCount = 1;
+
+ function RestartGame()
+ {
+  if(window.confirm("No more Lives Available, Do you want to Restart the Game?"))
+  {
+    console.log(" %c Yay! New Game: ", "color: yellow; font-size: 20px")
+    PlayCount = 1;
+     PLAY();
+  } 
+  else{
+    console.log(" %c ***---- GAME CANCELLED ----***", "color: purple; font-size: 23px");
+  }
+ }
+
+ function PLAY()
+ {
+     while(PlayCount<4)
+    {
+        PlayRound();
+        PlayCount++;
+    }
+    RestartGame();
+ }
+//  LETS EXECUTE OUR MAIN FUNCTION ();
+PLAY();
 
     

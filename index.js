@@ -38,7 +38,7 @@ function PlayRound(PC, CC)
 {
     if(PC === CC)
     {
-        console.log(" It's a DRAW ");
+        console.log(" %c It's a DRAW ", "color: Blue;");
     }
     // not equal cases
     else if(CC === "ROCK")
@@ -46,10 +46,10 @@ function PlayRound(PC, CC)
         switch(PC)
         {
             case "PAPER": 
-                console.log("You WON");
+                PrintWIN();
                 break;
             case "SCISSORS":
-                console.log("You LOST");
+                PrintLOST();
         }
     }
     else if(CC === "PAPER")
@@ -57,10 +57,10 @@ function PlayRound(PC, CC)
         switch(PC)
         {
             case "ROCK":
-                console.log("You LOST");
+                PrintLOST();
                 break;
             case "SCISSORS":
-                console.log("You WON");
+                PrintWIN();
         }
     }
     else if(CC === "SCISSORS")
@@ -68,12 +68,21 @@ function PlayRound(PC, CC)
         switch(PC)
         {
             case "ROCK":
-                console.log("You WON");
+                PrintWIN();
                 break;
             case "PAPER":
-                console.log("You LOST");
+                PrintLOST();
         }
     }
+}
+// custom functions
+function PrintLOST()
+{
+    console.log(" %c You LOST ", "color: red;");
+}
+function PrintWIN()
+{
+    console.log(" %c You WON ", "color: green;");
 }
 PlayRound(PlayerChoice, ComputerChoice);
 

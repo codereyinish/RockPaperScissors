@@ -65,8 +65,8 @@ function PlayRound()
     else 
     {
         // INVALID USER_INPUT  CASE
-        console.log("%c Invlaid Input Entered", "color: red; font-size:18px");
         console.log(` Count: "%c ${PlayCount} "`, "color: yellow; font-size: 17px");
+        console.log("%c Invlaid Input Entered", "color: red; font-size:18px");
         PrintPoints();
     }
 }
@@ -124,14 +124,22 @@ var PlayCount = 1;
 
  function PLAY()
  {
-     while(PlayCount<3)
+     while(PlayCount<6)
     {
         PlayRound();
         PlayCount++;
     }
+    // end of the round
+    EndResultAnnouncement();
     RestartGame();
+ }
+
+ function EndResultAnnouncement()
+ {
+    (PlayerPoint>CompPoint)?console.log(" %c So the Winner of the Previous Round is YOU ", "color:#800000; font-size:22px"):console.log(" %c The winner of the Previous Round is Computer G", "color:#800000 ; font-size:22px");
  }
 //  LETS EXECUTE OUR MAIN FUNCTION ();
 PLAY();
+
 
     

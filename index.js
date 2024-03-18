@@ -11,8 +11,8 @@ function getComputerChoice()
 // LETS GET USER CHOICE
 
 // Declaring PC and CC here as global variable so it can be used in all functions and blocks
-let PC;
-let CC;
+let PC;    //Player's Choice
+let CC;    //Computer's Choice                                                           
 let PlayerPoint = 0;
 let CompPoint = 0;
 //   compare condition
@@ -107,7 +107,7 @@ function PrintPoints()
 // Adding COUNTER
 var PlayCount = 1;
 
- function RestartGame()
+ function RestartRound()
  {
   if(window.confirm("No more Lives Available, Do you want to Restart the Game?"))
   {
@@ -130,11 +130,11 @@ var PlayCount = 1;
         PlayCount++;
     }
     // end of the round
-    EndResultAnnouncement();
-    RestartGame();
+    PrintAnnouncement();
+    RestartRound();
  }
 
- function EndResultAnnouncement()
+ function PrintAnnouncement()
  {
     (PlayerPoint>CompPoint)?console.log(" %c So the Winner of the Previous Round is YOU ", "color:#800000; font-size:22px"):console.log(" %c The winner of the Previous Round is Computer G", "color:#800000 ; font-size:22px");
  }

@@ -13,6 +13,8 @@ function getComputerChoice()
 // Declaring PC and CC here as global variable so it can be used in all functions and blocks
 let PC;
 let CC;
+let PlayerPoint = 0;
+let CompPoint = 0;
 //   compare condition
 function PlayRound()
 {
@@ -22,40 +24,50 @@ function PlayRound()
     {
         console.log(` Count: "%c ${PlayCount} "`, "color: yellow; font-size: 17px")
         console.log(`%c It's a DRAW, %c Both were ${PC}`,  "color:Green; font-size: 20px" , "color:Orange; font-size:20px");
+        PrintPoints();
     }
     // not equal cases
-    else if(CC === "ROCK")
+    // You are user... Used PC in expression instead of CC bcoz , PC can be any out of bound vlaue (in else)
+    else if(PC === "ROCK")
     {
-        switch(PC)
+        switch(CC)
         {
             case "PAPER": 
-                PrintWIN();
+                LOSTstatus();
                 break;
             case "SCISSORS":
-                PrintLOST();
+                WINstatus();
         }
     }
-    else if(CC === "PAPER")
+    else if(PC === "PAPER")
     {
         switch(PC)
         {
             case "ROCK":
-                PrintLOST();
+                WINstatus();
                 break;
             case "SCISSORS":
-                PrintWIN();
+                LOSTstatus();
         }
     }
-    else if(CC === "SCISSORS")
+    else if(PC === "SCISSORS")
     {
-        switch(PC)
+        switch(CC)
         {
             case "ROCK":
-                PrintWIN();
+                LOSTstatus();
                 break;
             case "PAPER":
-                PrintLOST();
+                WINstatus();
         }
+    }
+    // IF PC is out of bound (not Rock, not Paper, not Scissors then)
+    else 
+    {
+        // INVALID USER_INPUT  CASE
+        console.log("%c Invlaid Input Entered", "color: red; font-size:18px");
+        console.log(` Count: "%c ${PlayCount} "`, "color: yellow; font-size: 17px");
+        PrintPoints();
     }
 }
 // custom functions
@@ -65,9 +77,31 @@ function PrintLOST()
     console.log(` %c You LOST..... %c Your ${PC} lost over Computer's ${CC}` , "color: red; font-size: 20px; font-weight: 300;", "color: Orange; font-size: 20px;");
 }
 function PrintWIN()
-{
+{   
     console.log(` Count: "%c ${PlayCount} "`, "color : yellow; font-size: 17px;")
     console.log(`%c You WON... %c  Your ${PC} won over Computer's   ${CC}`  , "color: green; font-size: 20px", "color: Orange; font-size: 20px;");
+}
+
+ function LOSTstatus()
+ {
+    CompPoint++;
+    PrintLOST();
+    // displaying points
+    PrintPoints();
+    
+}
+function WINstatus()
+{
+    PlayerPoint++;
+    PrintWIN();
+    // displaying points
+    PrintPoints();
+    
+ }
+//  DisplayPoint Style
+function PrintPoints()
+{
+    console.log(`%c Player's_Point: ${PlayerPoint} %c Computer's_Point: ${CompPoint}`, "color: #1c87c9; font-size:19px", "color:#7FFFD4; font-size: 19px");
 }
 
 // Adding COUNTER
@@ -79,6 +113,8 @@ var PlayCount = 1;
   {
     console.log(" %c Yay! New Game: ", "color: yellow; font-size: 20px")
     PlayCount = 1;
+    PlayerPoint = 0;
+    CompPoint = 0;
      PLAY();
   } 
   else{
@@ -88,7 +124,7 @@ var PlayCount = 1;
 
  function PLAY()
  {
-     while(PlayCount<6)
+     while(PlayCount<3)
     {
         PlayRound();
         PlayCount++;
